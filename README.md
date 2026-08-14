@@ -33,15 +33,22 @@ python verify_actor_call.py
 
 ## Wire it into an agent
 
-Hosted (recommended) — add to Cursor / VS Code / Windsurf / Codex MCP config:
+Hosted (recommended) — the same URL works for any coding client. The article demos **Antigravity**; Cursor, VS Code, Windsurf, and Codex work identically.
+
+Apify CLI (writes the config for you):
+
+```bash
+apify login
+apify mcp install antigravity --tools actors,blukaze/breachhound
+```
+
+Or paste this into the client's MCP settings manually:
 
 ```json
 { "mcpServers": { "apify-breachhound": { "url": "https://mcp.apify.com?tools=actors,blukaze/breachhound" } } }
 ```
 
-Claude Desktop — its JSON config only accepts local stdio, so add the hosted URL through
-Settings → Connectors → Add custom connector. For the local stdio option, use `claude_desktop_config.json`
-and set `APIFY_TOKEN` in the client's environment.
+Claude Desktop (caveat) — its app policy refuses email-enumeration lookups, so it won't invoke this tool even once connected. For the local stdio option only, use `claude_desktop_config.json` and set `APIFY_TOKEN` in the client's environment. Prefer a coding agent for the live demo.
 
 ## Legal and ethical use
 
