@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "apify-breachhound": {
+      "url": "https://mcp.apify.com?tools=actors,blukaze/breachhound"
+    }
+  }
+}

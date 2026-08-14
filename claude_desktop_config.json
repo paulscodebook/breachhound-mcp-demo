@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "apify-breachhound": {
+      "command": "npx",
+      "args": ["-y", "@apify/actors-mcp-server@latest", "--tools", "blukaze/breachhound"],
+      "env": {
+        "APIFY_TOKEN": "PASTE_YOUR_APIFY_TOKEN_HERE"
+      }
+    }
+  }
+}
