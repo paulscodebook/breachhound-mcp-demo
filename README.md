@@ -33,32 +33,19 @@ python verify_actor_call.py
 
 ## Wire it into an agent
 
-Hosted (recommended) — Antigravity launches remote MCP servers as a `mcp-remote` subprocess, so the entry matches any other server you've added there (the bare `url` form does NOT work in Antigravity):
+Hosted (recommended) — Antigravity and other native Streamable-HTTP clients connect directly to Apify; do NOT wrap it in `mcp-remote` (Apify's server requires the `Mcp-Method` header that `mcp-remote@latest` 0.1.38 omits, causing a `server/discover` `-32020` error). Use the exact form Apify's CLI writes:
 
 ```json
 {
   "mcpServers": {
-    "ApifyBreachHound": {
-      "$typeName": "exa.cascade_plugins_pb.CascadePluginCommandTemplate",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.apify.com?tools=actors,blukaze/breachhound"
-      ],
-      "env": {}
+    "apify": {
+      "url": "https://mcp.apify.com"
     }
   }
 }
 ```
 
-For Cursor / VS Code / Windsurf / Codex (these accept the `url` form directly):
-
-```json
-{ "mcpServers": { "apify-breachhound": { "url": "https://mcp.apify.com?tools=actors,blukaze/breachhound" } } }
-```
-
-Or use the Apify CLI: `apify login` then `apify mcp install antigravity --tools actors,blukaze/breachhound`.
+`apify login` then `apify mcp install antigravity` produces the same entry. Scope to specific Actors via the [Apify UI configurator](https://mcp.apify.com/).
 
 Claude Desktop (caveat) — its app policy refuses email-enumeration lookups, so it won't invoke this tool even once connected. For the local stdio option only, use `claude_desktop_config.json` and set `APIFY_TOKEN` in the client's environment. Prefer a coding agent for the live demo.
 

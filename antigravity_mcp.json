@@ -1,14 +1,7 @@
 {
   "mcpServers": {
-    "ApifyBreachHound": {
-      "$typeName": "exa.cascade_plugins_pb.CascadePluginCommandTemplate",
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.apify.com?tools=actors,blukaze/breachhound"
-      ],
-      "env": {}
+    "apify": {
+      "url": "https://mcp.apify.com"
     }
   }
 }
